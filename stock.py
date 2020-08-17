@@ -1,16 +1,11 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov  7 10:35:27 2019
-
-@author: Administrator
-"""
-
 import tushare as ts
-ts.set_token('6a6b8bf5108aa2cc83d3ba23005fdb06323f208383992dd5e77a3d76')
-#df = ts.get_stock_basics()
-pro = ts.pro_api()
+import pandas as pd
+from sqlalchemy import create_engine
 
-df = pro.fina_indicator(ts_code='600000.SH')
-#另一种方式ts.get_stock_basics()
-df.to_csv('c:/day/000875.csv')
-#选择保存  df.to_csv('c:/day/000875.csv',columns=['open','high','low','close'])
+engine = create_engine('mysql+pymysql://sdi:sdi@123@192.168.11.122:3306/sdi2?charset=utf8')
+ts.set_token('6a6b8bf5108aa2cc83d3ba23005fdb06323f208383992dd5e77a3d76')
+pro = ts.pro_api()
+df2 = pro.daily(trade_date='20190812')
+df2.to_sql('s_tomorrow',engine,if_exists='append')
+#df2=pro.stock_basic(exchange='', list_status='L', fields='ts_code,symbol,name,area,industry,list_date')
+#df2.to_sql('s_basics',engine,if_exists='append')
