@@ -26,5 +26,5 @@ for v in dlist:
     if isInfo(v[1], v[0]):
         content += (v[1]+":"+v[0]+"\r\n")
 
-with open('file.txt', 'w', encoding='utf-8') as f:
+with open('data/file.txt', 'w', encoding='utf-8') as f:
     f.write(content)
