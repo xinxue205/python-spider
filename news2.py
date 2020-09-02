@@ -25,6 +25,8 @@ dlist = re.findall(pat,html)
 
 content = ''
 for v in dlist:
+    if len(v[1]) < 5:
+        continue
     if isInfo(v[1], v[0]):
         content += (v[1]+":"+v[0]+"\r\n")
 
